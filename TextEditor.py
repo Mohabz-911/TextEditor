@@ -18,6 +18,7 @@ class TextEditor:
 
         # Text editing area
         self.textbox = tk.Text(self.root, height=500, width=800, font=('Cairo', 12), foreground='White', background='Black')
+        self.textbox.focus()
         self.textbox.pack()
 
         # Menu
