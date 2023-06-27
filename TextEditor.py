@@ -43,15 +43,19 @@ class TextEditor:
             self.filename = file.name
             self.isOpened = True
 
+            # Replace the current content with the content of the opened file
             content = file.read()
             self.textbox.delete('1.0', 'end')
             self.textbox.insert('insert', content)
 
+            # Change the window title
             filename_without_ext = os.path.splitext(os.path.basename(self.filename))[0]
             self.root.title(filename_without_ext)
     
     # function to call when user press save button
     def save_file(self):
+        # 'Save as'
+        # This is done when creating a new file
         if self.isOpened == False:
             files = [('Text Document', '*.txt')]
             file = asksaveasfile(filetypes = files, defaultextension = files)
@@ -59,6 +63,7 @@ class TextEditor:
                 return
             self.filename = file.name
             self.isOpened = True
+        # Save edit
         with open(self.filename, 'w') as f:
             f.write(self.textbox.get('1.0', tk.END))
 
