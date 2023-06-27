@@ -18,8 +18,12 @@ class TextEditor:
 
         # Text editing area
         self.textbox = tk.Text(self.root, height=500, width=800, font=('Cairo', 12), foreground='White', background='Black')
+        # Auto focus
         self.textbox.focus()
+        # Cursor
         self.textbox.config(insertbackground='White', insertwidth=5)
+        # Save using Ctrl + S
+        self.textbox.bind('<KeyPress>', self.shortcut)
         self.textbox.pack()
 
         # Menu
@@ -50,10 +54,20 @@ class TextEditor:
     def save_file(self):
         if self.isOpened == False:
             files = [('Text Document', '*.txt')]
-            self.filename = asksaveasfile(filetypes = files, defaultextension = files).name
+            file = asksaveasfile(filetypes = files, defaultextension = files)
+            if file is None:
+                return
+            self.filename = file.name
             self.isOpened = True
         with open(self.filename, 'w') as f:
             f.write(self.textbox.get('1.0', tk.END))
+
+    # function to handle keyboard shortcuts
+    def shortcut(self, event):
+        if (event.state == 12 and event.keysym == 's') or (event.state == 14 and event.keysym == 'S'):
+            self.save_file()
+        elif (event.state == 12 and event.keysym == 'o') or (event.state == 14 and event.keysym == 'O'):
+            self.open_file()
 
 
 
