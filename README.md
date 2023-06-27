@@ -48,9 +48,6 @@ py .\TextEditor.py
 ~~~
 
 
-## Special Thanks
-I want to thank CodeClause Organization for providing me this internship opportunity.
-
 ## Feedback  
 
 If you have any feedback, please reach out to us at mohabmohamedmohamedzaghloul@gmail.com
